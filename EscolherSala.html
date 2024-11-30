@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolher Sala</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="escolherSala">
+    <div class="container">
+        <ul class="salas">
+            <li onclick="entrarSala('Letterboxd', 'Salinha pros fans de filmes #cinefilos🎬📽', true)" class="privada">
+                <span class="nome-sala">Letterboxd</span>
+                <span class="descricao-sala">Salinha pros fans de filmes #cinefilos🎬📽</span>
+            </li>
+            <li onclick="entrarSala('Conversando aqui', 'Gente não sei usar isso aqui direito')" class="publica">
+                <span class="nome-sala">Conversando aqui</span>
+                <span class="descricao-sala">Gente não sei usar isso aqui direito</span>
+            </li>
+            <li onclick="entrarSala('Futebas', 'Baguncinha pra jogar no ginasio um futebas sem compromisso😅', true)" class="privada">
+                <span class="nome-sala">Futebas</span>
+                <span class="descricao-sala">Baguncinha pra jogar no ginasio um futebas sem compromisso😅</span>
+            </li>
+            <li onclick="entrarSala('los hermanos', 'Vamo falar sobre o quão BRUTAL é Los hermanos')" class="publica">
+                <span class="nome-sala">los hermanos</span>
+                <span class="descricao-sala">Vamo falar sobre o quão BRUTAL é Los hermanos</span>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+       function entrarSala(nome, descricao, isPrivada) {
+    if (isPrivada) {
+        const senha = prompt("Esta sala é privada. Por favor, insira a senha:");
+        if (senha !== "123") {  //senha
+            return;
+        }
+    }
+    const params = new URLSearchParams();
+    params.append('nome', nome);
+    params.append('descricao', descricao);
+    window.location.href = `chat.html?${params.toString()}`;
+}
+    
+    </script>
+</body>
+</html>

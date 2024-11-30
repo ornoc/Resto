@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="chat">
+    <div class="container">
+        <div class="header">
+            <h2 id="nomeSala"></h2>
+            <p id="descricaoSala"></p>
+            <button class="sair" onclick="sairChat()">Sair</button>
+        </div>
+        <div class="mensagens" id="mensagens">
+            <!-- mensagens-->
+        </div>
+        <div class="campo2">
+            <input type="text" placeholder="Digite..." id="mensagemInput">
+            <button onclick="enviarMensagem()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('nomeSala').innerText = params.get('nome');
+            document.getElementById('descricaoSala').innerText = params.get('descricao');
+        };
+
+        function enviarMensagem() {
+            const mensagensDiv = document.getElementById('mensagens');
+            const mensagemInput = document.getElementById('mensagemInput');
+            const mensagemTexto = mensagemInput.value;
+
+            if (mensagemTexto.trim() !== '') {
+                const mensagemElemento = document.createElement('div');
+                mensagemElemento.className = 'mensagem enviada';
+                mensagemElemento.innerText = mensagemTexto;
+                mensagensDiv.appendChild(mensagemElemento);
+
+                // resposta
+                setTimeout(() => {
+                    const respostaElemento = document.createElement('div');
+                    respostaElemento.className = 'mensagem recebida';
+                    respostaElemento.innerText = 'Resposta: ' + mensagemTexto;
+                    mensagensDiv.appendChild(respostaElemento);
+                    mensagensDiv.scrollTop = mensagensDiv.scrollHeight;
+                }, 1000);
+
+                mensagemInput.value = '';
+                mensagensDiv.scrollTop = mensagensDiv.scrollHeight;
+            }
+            
+        }
+        function sairChat() {
+    window.location.href = 'escolhersala.html';
+}
+    </script>
+</body>
+</html>
